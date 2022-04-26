@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import PokeCard from '../components/PoemCard';
-import { fetchPoems } from '../services/poems';
+import QuoteCard from '../components/QuoteCard';
+import { fetchQuotes } from '../services/simpsons';
 
 export default function Main() {
-  const [poems, setPoems] = useState([]);
+  const [quotes, setQuotes] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await fetchPoems();
-        setPoems(data);
+        const data = await fetchQuotes();
+        setQuotes(data);
         setLoading(false);
       };
       fetchData();
@@ -21,12 +21,10 @@ export default function Main() {
 
   if (loading) return <p>Loading...</p>;
 
-  console.log(poems);
-
   return (
     <div>
-      {poems.map((poem) => (
-        <PokeCard key={poem.id} {...poem} />
+      {quotes.map((quote) => (
+        <QuoteCard key={quote.id} {...quote} />
       ))}
     </div>
   );
