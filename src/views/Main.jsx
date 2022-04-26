@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import PokeCard from '../components/PokeCard';
-import { fetchPokemon } from '../services/pokemon';
+import PokeCard from '../components/PoemCard';
+import { fetchPoems } from '../services/poems';
 
 export default function Main() {
-  const [pokemon, setPokemon] = useState([]);
+  const [poems, setPoems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await fetchPokemon();
-        setPokemon(data);
+        const data = await fetchPoems();
+        setPoems(data);
         setLoading(false);
       };
       fetchData();
@@ -21,12 +21,12 @@ export default function Main() {
 
   if (loading) return <p>Loading...</p>;
 
-  console.log(pokemon);
+  console.log(poems);
 
   return (
     <div>
-      {pokemon.map((poke) => (
-        <PokeCard key={poke.id} {...poke} />
+      {poems.map((poem) => (
+        <PokeCard key={poem.id} {...poem} />
       ))}
     </div>
   );
