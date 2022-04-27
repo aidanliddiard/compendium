@@ -24,7 +24,7 @@ export default function Main() {
   return (
     <div>
       {quotes.map((quote) => (
-        <QuoteCard key={quote.id} {...quote} />
+        <QuoteCard key={quote} {...quote} />
       ))}
     </div>
   );
