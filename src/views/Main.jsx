@@ -11,7 +11,9 @@ export default function Main() {
       const fetchData = async () => {
         const data = await fetchQuotes();
         setQuotes(data);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 200);
       };
       fetchData();
     } catch (error) {
@@ -24,7 +26,7 @@ export default function Main() {
   return (
     <div>
       {quotes.map((quote) => (
-        <QuoteCard key={quote} {...quote} />
+        <QuoteCard key={quote.quote} {...quote} />
       ))}
     </div>
   );

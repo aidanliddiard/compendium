@@ -1,14 +1,24 @@
-import { render, screen } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import App from './App';
 
 describe('App', () => {
   it('Should render the title', async () => {
     render(<App />);
+    screen.getByText('Loading...');
 
-    screen.getByText(/Compendium/i);
+    await waitForElementToBeRemoved(await screen.findByText('Loading...'), {
+      timeout: 5000,
+    });
 
-    await screen.findByRole('img', { timeout: 5000 });
+    //screen.debug();
+    const name = screen.getAllByRole('heading', { level: 2 });
+    expect(name.length).toEqual(10);
+    const images = screen.getAllByRole('img');
 
-    screen.debug();
+    expect(images.length).toEqual(10);
   });
 });
