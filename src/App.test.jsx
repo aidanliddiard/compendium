@@ -1,6 +1,7 @@
 import {
   render,
   screen,
+  waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import App from './App';
@@ -14,7 +15,6 @@ describe('App', () => {
       timeout: 5000,
     });
 
-    //screen.debug();
     const name = screen.getAllByRole('heading', { level: 2 });
     expect(name.length).toEqual(10);
     const images = screen.getAllByRole('img');
